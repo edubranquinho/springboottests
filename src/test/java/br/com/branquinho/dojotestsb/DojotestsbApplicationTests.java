@@ -12,6 +12,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+//WebMvcTest -> Sobe o contexto da camada de Web.
+//AutoConfigureMockMvc -> Sobe todo o contexto da aplicação
+
 @RunWith(SpringRunner.class)
 //@SpringBootTest (https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
 @WebMvcTest(controllers = HelloPapoRetoController.class) //https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html
