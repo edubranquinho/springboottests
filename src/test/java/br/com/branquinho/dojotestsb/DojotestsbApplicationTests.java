@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class DojotestsbApplicationTests {
 
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mockMvc; //principal ponto de entrada para o controller
 
     @Test
     public void testHelloWorld() throws Exception {

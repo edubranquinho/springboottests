@@ -51,7 +51,8 @@ public class FornecedorControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/fornecedor")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON_UTF8).content(JsonUtils.toJson(fornecedorASalvar)))
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .content(JsonUtils.toJson(fornecedorASalvar)))
                 .andExpect(status().isOk())
                 .andExpect(content().json(JsonUtils.toJson(fornecedorEsperado)));
     }
@@ -64,7 +65,8 @@ public class FornecedorControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/fornecedor")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON_UTF8).content(JsonUtils.toJson(fornecedorSemNome)))
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .content(JsonUtils.toJson(fornecedorSemNome)))
                 .andExpect(status().isBadRequest());
     }
 
