@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 //AutoConfigureMockMvc -> Sobe todo o contexto da aplicação
 
 @RunWith(SpringRunner.class)
-//@SpringBootTest (https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
+//@SpringBootTest (https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html) -- cria o seu ApplicationContext
 @WebMvcTest(controllers = HelloPapoRetoController.class) //https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html
 //controllers = Specifies the controllers to test. May be left blank if all @Controller beans should be added to the application context.
 public class DojotestsbApplicationTests {

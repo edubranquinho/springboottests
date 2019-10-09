@@ -2,13 +2,16 @@ package br.com.branquinho.dojotestsb.controller;
 
 import br.com.branquinho.dojotestsb.model.Fornecedor;
 import br.com.branquinho.dojotestsb.service.FornecedorService;
+import br.com.branquinho.dojotestsb.utils.JsonUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -23,6 +26,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = FornecedorController.class)
+//@SpringBootTest
+//@AutoConfigureMockMvc
 public class FornecedorControllerTest {
 
     @Autowired
@@ -33,28 +38,22 @@ public class FornecedorControllerTest {
 
     @Test
     public void deveCriarNovoFornecedor() throws Exception {
-        Fornecedor fornecedorSalvo = new Fornecedor();
-        fornecedorSalvo.setId(2l);
-        fornecedorSalvo.setCnpj(12312312);
-        fornecedorSalvo.setNome("Ambev");
+        Fornecedor fornecedorEsperado = new Fornecedor();
+        fornecedorEsperado.setId((long) 1);
+        fornecedorEsperado.setCnpj(12312312);
+        fornecedorEsperado.setNome("Ambev");
 
-        when(fornecedorService.novoFornecedor(any(Fornecedor.class))).thenReturn(fornecedorSalvo);
+        when(fornecedorService.novoFornecedor(any(Fornecedor.class))).thenReturn(fornecedorEsperado);
 
         Fornecedor fornecedorASalvar = new Fornecedor();
         fornecedorASalvar.setCnpj(12312312);
         fornecedorASalvar.setNome("Ambev");
 
-        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String fornecedorJson = objectWriter.writeValueAsString(fornecedorASalvar);
-
-        String jsonEsperado = new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(fornecedorSalvo);
-
         mockMvc.perform(MockMvcRequestBuilders.post("/fornecedor")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON_UTF8).content(fornecedorJson))
+                .accept(MediaType.APPLICATION_JSON_UTF8).content(JsonUtils.toJson(fornecedorASalvar)))
                 .andExpect(status().isOk())
-                .andExpect(content().json(jsonEsperado));
-
+                .andExpect(content().json(JsonUtils.toJson(fornecedorEsperado)));
     }
 
 }
