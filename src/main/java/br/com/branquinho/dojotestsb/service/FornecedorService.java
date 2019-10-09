@@ -10,6 +10,7 @@ public class FornecedorService {
     private final FornecedorRepository fornecedorRepository;
 
     public FornecedorService(FornecedorRepository fornecedorRepository) {
+        System.out.println("Construindo o fornecedor service");
         this.fornecedorRepository = fornecedorRepository;
     }
 
