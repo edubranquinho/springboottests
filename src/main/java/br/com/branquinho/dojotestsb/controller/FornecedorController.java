@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/fornecedor")
 public class FornecedorController {
@@ -18,7 +20,7 @@ public class FornecedorController {
     }
 
     @PostMapping
-    public Fornecedor novoFornecedor(@RequestBody Fornecedor fornecedor) {
+    public Fornecedor novoFornecedor(@RequestBody @Valid Fornecedor fornecedor) {
         return fornecedorService.novoFornecedor(fornecedor);
     }
 }

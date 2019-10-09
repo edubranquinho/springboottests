@@ -56,4 +56,16 @@ public class FornecedorControllerTest {
                 .andExpect(content().json(JsonUtils.toJson(fornecedorEsperado)));
     }
 
+    @Test
+    public void naoDeveSerPermitidoFornecedorSemNome() throws Exception {
+        Fornecedor fornecedorSemNome = new Fornecedor();
+        fornecedorSemNome.setId((long) 1);
+        fornecedorSemNome.setCnpj(12312312);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/fornecedor")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON_UTF8).content(JsonUtils.toJson(fornecedorSemNome)))
+                .andExpect(status().isBadRequest());
+    }
+
 }
